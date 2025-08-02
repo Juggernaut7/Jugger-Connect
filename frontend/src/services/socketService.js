@@ -11,7 +11,7 @@ class SocketService {
       return this.socket;
     }
 
-    this.socket = io('http://localhost:5000', {
+    this.socket = io('https://jugger-connect-2.onrender.com', {
       auth: {
         token: token
       }

@@ -1,129 +1,106 @@
 # Jugger-Connect
 
-A modern social media platform with real-time chat functionality, built with React, Node.js, Express, MongoDB, and Socket.IO.
+A modern social media platform built with MERN stack featuring real-time chat, user authentication, dynamic profiles, admin dashboard, and responsive design.
 
-## Features
+## 🌐 Live Demo
 
-### Frontend (React)
-- **Authentication**: Login/Register with JWT
-- **Social Feed**: Create, like, comment, and share posts
-- **User Profiles**: View and edit user profiles
-- **Real-time Chat**: Instant messaging with Socket.IO
-- **Responsive Design**: Modern UI with Tailwind CSS
-- **User Search**: Find and connect with other users
+- **Frontend**: [https://jugger-connect.vercel.app/](https://jugger-connect.vercel.app/)
+- **Backend API**: [https://jugger-connect-2.onrender.com/](https://jugger-connect-2.onrender.com/)
 
-### Backend (Node.js/Express)
-- **RESTful API**: Complete CRUD operations
-- **Authentication**: JWT-based authentication
-- **Real-time Communication**: Socket.IO for live chat
+## 🚀 Features
+
+- **User Authentication**: Secure JWT-based login/registration
+- **Real-time Chat**: Socket.IO powered messaging system
+- **Dynamic Profiles**: User profiles with follow/unfollow functionality
+- **Post Management**: Create, like, and comment on posts
+- **Admin Dashboard**: User management and platform statistics
+- **Responsive Design**: Mobile-first design with Tailwind CSS
+- **Search Functionality**: Find and connect with other users
+- **Real-time Updates**: Live notifications and status updates
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Vite, Tailwind CSS, Framer Motion
+- **Backend**: Node.js, Express.js, Socket.IO
 - **Database**: MongoDB with Mongoose ODM
-- **File Upload**: Support for images and files
-- **User Management**: Follow/unfollow, profile updates
+- **Authentication**: JWT with bcryptjs
+- **Deployment**: Vercel (Frontend), Render (Backend)
 
-## Project Structure
-
-```
-/Jugger-Connect
-├── frontend/                 # React frontend
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── auth/        # Authentication components
-│   │   │   ├── posts/       # Post-related components
-│   │   │   └── chat/        # Chat components
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API services
-│   │   ├── contexts/        # React contexts
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── package.json
-│   └── vite.config.js
-└── backend/                  # Node.js backend
-    ├── config/
-    │   └── db.js            # Database configuration
-    ├── controllers/         # Route controllers
-    ├── middlewares/         # Custom middlewares
-    ├── models/              # Mongoose models
-    ├── routes/              # API routes
-    ├── socket/              # Socket.IO handlers
-    ├── .env                 # Environment variables
-    ├── package.json
-    └── server.js            # Main server file
-```
-
-## Getting Started
+## 📦 Installation
 
 ### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB Atlas account
 
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
-
-### Installation
+### Setup
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Juggernaut7/Jugger-Connect.git
    cd Jugger-Connect
    ```
 
-2. **Install backend dependencies**
+2. **Install dependencies**
    ```bash
-   cd backend
-   npm install
+   npm run install-all
    ```
 
-3. **Install frontend dependencies**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-4. **Environment Setup**
-
-   Create `.env` file in the backend directory:
+3. **Environment Setup**
+   
+   Create `.env` file in the `backend` directory:
    ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/jugger-connect
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
    CLIENT_URL=http://localhost:5173
    NODE_ENV=development
    ```
 
-5. **Start the development servers**
-
-   Backend:
+4. **Run the application**
    ```bash
-   cd backend
+   # Run both frontend and backend
    npm run dev
+   
+   # Or run separately
+   npm run server  # Backend only
+   npm run client  # Frontend only
    ```
 
-   Frontend:
-   ```bash
-   cd frontend
-   npm run dev
-   ```
+## 🔧 Available Scripts
 
-## API Endpoints
+- `npm run dev` - Run both frontend and backend in development
+- `npm run server` - Run backend server only
+- `npm run client` - Run frontend development server
+- `npm run install-all` - Install dependencies for all packages
+- `npm run build` - Build frontend for production
+- `npm start` - Start production backend server
+
+## 📱 Usage
+
+1. **Register/Login**: Create an account or sign in
+2. **Create Posts**: Share your thoughts with the community
+3. **Connect**: Search and follow other users
+4. **Chat**: Start real-time conversations
+5. **Admin Panel**: Manage users (admin only)
+
+## 🔐 API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
 - `GET /api/auth/me` - Get current user
-- `POST /api/auth/logout` - Logout user
 
 ### Users
 - `GET /api/users` - Get all users
 - `GET /api/users/:id` - Get user by ID
 - `PUT /api/users/profile` - Update profile
 - `POST /api/users/:id/follow` - Follow user
-- `DELETE /api/users/:id/follow` - Unfollow user
+- `DELETE /api/users/:id/unfollow` - Unfollow user
+- `GET /api/users/search` - Search users
 
 ### Posts
-- `GET /api/posts` - Get posts feed
-- `POST /api/posts` - Create new post
+- `GET /api/posts` - Get all posts
+- `POST /api/posts` - Create post
 - `GET /api/posts/:id` - Get post by ID
 - `PUT /api/posts/:id` - Update post
 - `DELETE /api/posts/:id` - Delete post
@@ -131,50 +108,19 @@ A modern social media platform with real-time chat functionality, built with Rea
 - `POST /api/posts/:id/comment` - Add comment
 
 ### Chat
-- `GET /api/chat/conversations` - Get all conversations
-- `GET /api/chat/conversation/:userId` - Get conversation with user
+- `GET /api/chat/conversations` - Get conversations
+- `POST /api/chat/conversations` - Create conversation
+- `GET /api/chat/conversation/:id` - Get conversation messages
 - `POST /api/chat/messages` - Send message
-- `PUT /api/chat/messages/read/:senderId` - Mark messages as read
-- `GET /api/chat/unread-count` - Get unread count
 
-## Socket.IO Events
+### Admin
+- `GET /api/admin/stats` - Get platform statistics
+- `GET /api/admin/users` - Get all users (admin)
+- `DELETE /api/admin/users/:id` - Delete user (admin)
+- `PUT /api/admin/users/:id/ban` - Ban user (admin)
+- `PUT /api/admin/users/:id/verify` - Verify user (admin)
 
-### Client to Server
-- `send_message` - Send a message
-- `typing_start` - Start typing indicator
-- `typing_stop` - Stop typing indicator
-- `mark_read` - Mark messages as read
-- `update_status` - Update user status
-
-### Server to Client
-- `receive_message` - Receive new message
-- `message_sent` - Confirm message sent
-- `typing_start` - User started typing
-- `typing_stop` - User stopped typing
-- `messages_read` - Messages were read
-- `user_online` - User came online
-- `user_offline` - User went offline
-
-## Technologies Used
-
-### Frontend
-- React 18
-- Vite
-- Tailwind CSS
-- Socket.IO Client
-- React Router (planned)
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Socket.IO
-- JWT
-- bcryptjs
-- cors
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -182,19 +128,19 @@ A modern social media platform with real-time chat functionality, built with Rea
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
+## 📄 License
 
-This project is licensed under the ISC License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Future Enhancements
+## 👨‍💻 Author
 
-- [ ] Image upload functionality
-- [ ] Push notifications
-- [ ] Group chat support
-- [ ] Video calling
-- [ ] Story features
-- [ ] Advanced search filters
-- [ ] Dark mode
-- [ ] Mobile app (React Native)
-- [ ] Email notifications
-- [ ] Admin dashboard 
+**Jugger-Connect Team**
+
+## 🙏 Acknowledgments
+
+- React and Vite for the frontend framework
+- Node.js and Express for the backend
+- MongoDB for the database
+- Socket.IO for real-time features
+- Tailwind CSS for styling
+- Framer Motion for animations 
