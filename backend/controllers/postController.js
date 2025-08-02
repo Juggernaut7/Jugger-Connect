@@ -43,7 +43,15 @@ const getPosts = async (req, res) => {
       // Get posts from followed users and current user
       const currentUser = await User.findById(req.user._id);
       const followingIds = [...currentUser.following, req.user._id];
-      query.author = { $in: followingIds };
+      
+      // If user hasn't followed anyone yet, show all public posts
+      if (currentUser.following.length === 0) {
+        // Show all public posts for new users (like Facebook)
+        query = { isPublic: true };
+      } else {
+        // Show posts from followed users and current user
+        query.author = { $in: followingIds };
+      }
     }
 
     const posts = await Post.find(query)

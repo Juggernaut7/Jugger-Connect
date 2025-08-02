@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://jugger-connect-2.onrender.com/api';
 
-// Create axios instance
+// Create axios instance 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-});
+}); 
 
 // Request interceptor to add auth token
 api.interceptors.request.use(

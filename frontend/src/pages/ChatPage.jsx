@@ -208,12 +208,12 @@ const ChatPage = () => {
                     <User className="w-3 h-3 sm:w-4 sm:h-4" />
                   </motion.button>
                 </div>
-              </div>
+        </div>
 
               {/* New Conversation Search */}
-              <AnimatePresence>
+          <AnimatePresence>
                 {showUserSearch && (
-                  <motion.div
+              <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
@@ -281,14 +281,14 @@ const ChatPage = () => {
                             <p className="text-slate-500 text-xs sm:text-sm truncate">
                               {conversation.lastMessage?.content || 'No messages yet'}
                             </p>
-                          </div>
+                  </div>
                           {conversation.unreadCount > 0 && (
                             <div className="w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                               {conversation.unreadCount}
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
                     );
                   })}
                 </div>
@@ -307,23 +307,23 @@ const ChatPage = () => {
                   >
                     Start a Conversation
                   </motion.button>
-                </div>
-              )}
             </div>
-          </div>
+          )}
+        </div>
+      </div>
 
           {/* Right Side - Chat Area */}
-          <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col">
             {selectedConversation ? (
-              <>
-                {/* Chat Header */}
+          <>
+            {/* Chat Header */}
                 <div className="p-3 sm:p-4 border-b border-slate-200 bg-gradient-to-r from-blue-50 to-purple-50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 sm:space-x-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold shadow-lg text-sm sm:text-base">
                         {getOtherParticipant(selectedConversation)?.name?.charAt(0) || 'U'}
-                      </div>
-                      <div>
+                </div>
+                <div>
                         <h3 className="font-semibold text-slate-800 text-sm sm:text-base">
                           {getOtherParticipant(selectedConversation)?.name || 'Unknown User'}
                         </h3>
@@ -352,18 +352,18 @@ const ChatPage = () => {
                       >
                         <MoreVertical className="w-3 h-3 sm:w-4 sm:h-4" />
                       </motion.button>
-                    </div>
-                  </div>
                 </div>
+              </div>
+            </div>
 
                 {/* Messages Area */}
                 <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
                   {messages.length > 0 ? (
                     messages.map((message) => (
-                      <motion.div
+                  <motion.div
                         key={message._id}
                         initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                         className={`flex ${message.sender === user._id ? 'justify-end' : 'justify-start'}`}
                       >
                         <div className={`max-w-[80%] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-2xl ${
@@ -372,13 +372,13 @@ const ChatPage = () => {
                             : 'bg-slate-100 text-slate-800'
                         }`}>
                           <p className="text-xs sm:text-sm">{message.content}</p>
-                          <p className={`text-xs mt-1 ${
+                      <p className={`text-xs mt-1 ${
                             message.sender === user._id ? 'text-blue-100' : 'text-slate-500'
-                          }`}>
+                      }`}>
                             {formatTimeAgo(message.createdAt)}
-                          </p>
-                        </div>
-                      </motion.div>
+                      </p>
+                    </div>
+                  </motion.div>
                     ))
                   ) : (
                     <div className="flex flex-col items-center justify-center h-full text-center">
@@ -387,46 +387,46 @@ const ChatPage = () => {
                       </div>
                       <h3 className="text-sm sm:text-lg font-semibold text-slate-800 mb-2">No messages yet</h3>
                       <p className="text-slate-600 text-xs sm:text-sm">Send a message to start the conversation!</p>
-                    </div>
-                  )}
-                  <div ref={messagesEndRef} />
-                </div>
+                  </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
 
-                {/* Message Input */}
+            {/* Message Input */}
                 <div className="p-3 sm:p-4 border-t border-slate-200">
                   <form onSubmit={handleSendMessage} className="flex items-center space-x-2 sm:space-x-3">
-                    <input
-                      type="text"
-                      value={newMessage}
+                <input
+                  type="text"
+                  value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
-                      placeholder="Type a message..."
+                  placeholder="Type a message..."
                       className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-200 text-xs sm:text-sm"
-                      disabled={sending}
-                    />
+                  disabled={sending}
+                />
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      type="submit"
-                      disabled={sending || !newMessage.trim()}
+                  type="submit"
+                  disabled={sending || !newMessage.trim()}
                       className="p-2 sm:p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                    >
-                      {sending ? (
+                >
+                  {sending ? (
                         <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white"></div>
-                      ) : (
+                  ) : (
                         <Send className="w-3 h-3 sm:w-4 sm:h-4" />
-                      )}
+                  )}
                     </motion.button>
-                  </form>
-                </div>
-              </>
-            ) : (
+              </form>
+            </div>
+          </>
+        ) : (
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <div className="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mb-4 sm:mb-6">
                   <MessageCircle className="w-8 h-8 sm:w-12 sm:h-12 text-blue-600" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-2">Select a conversation</h3>
                 <p className="text-slate-600 text-sm sm:text-base">Choose a chat to start messaging</p>
-              </div>
+            </div>
             )}
           </div>
         </div>

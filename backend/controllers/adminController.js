@@ -10,6 +10,7 @@ const getAllUsers = async (req, res) => {
     const limit = parseInt(req.query.limit) || 20;
     const search = req.query.search || '';
 
+    
     const query = {};
     if (search) {
       query.$or = [

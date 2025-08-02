@@ -47,6 +47,7 @@ jspm_packages/
 
 # Test files
 test-chat.js
+create-sample-posts.js
 
 # Uploads
 uploads/ 
